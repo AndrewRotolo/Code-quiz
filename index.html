@@ -5,10 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/styles.css">
-    <title>Document</title>
+    <title>Coding Quiz</title>
 </head>
 <body>
-    
+    <header id="header"><h1>Andrew's Coding Quiz</h1></header> <!--Title bar at the top of the page-->
+    <div id="leftCard"> <!--leftCard is where the top 3 hiscores will be displayed-->
+        <div class="hiscores" id="scoreHeader">Hiscores!</div>
+        <div class="hiscores" id="score1">left</div>
+        <div class="hiscores" id="score2">left</div>
+        <div class="hiscores" id="score3">left</div>
+    </div>
+    <div id="question">question</div>
+    <div id="mainGame"> <!--This is where the game is played-->
+        <div id="answercard"> <!--This is where the multiple choice answers are. Maybe change "answers" to <button>s later?-->
+            <div class="answers" id="answer1">main</div>
+            <div class="answers" id="answer2">main</div>
+            <div class="answers" id="answer3">main</div>
+            <div class="answers" id="answer4">main</div>
+        </div>
+    </div>
+    <div id="rightCard"> <!--displays timer and score of current game. No practical reason to be bundled together. It's an aesthetic choice-->
+        <div id="timer">Timer</div>
+        <div id="currentScore">Score</div>
+    </div>
+    <button id="startButton" state="idle"><h2>Start Game</h2></button> <!--Buton to start the game. Maybe have it change its message when game starts? Decide later-->
 </body>
 <script a href="./assets/js/script.js"></script>
 </html>

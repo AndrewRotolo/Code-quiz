@@ -1,0 +1,99 @@
+body {
+    background-color: rgb(231, 225, 199);
+}
+
+#header {
+    text-align: center;
+    font-size: 30px;
+}
+
+#startButton {
+    position: absolute;
+    left: 750px;
+    bottom: 80px;
+}
+
+#leftCard {
+    display: flex;
+    flex-direction: column;
+    background-color: #5BE380;
+    position: absolute;
+    left: 175px;
+    justify-content: center;
+}
+
+.hiscores {
+    border: 3px;
+    border-style: solid;
+    border-color: black;
+    height: 115px;
+    width: 200px;
+    text-align: center;
+}
+
+#question {
+    width: 443px;
+    height: 50px;
+    border: 3px;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: black;
+    position: absolute;
+    left: 575px;
+    text-align: center;
+    font-size: 30px; /*Don't forget to adjust this later depending on the length of the question. Consider setting */
+    background-color: #708AFA;
+}
+
+#answercard {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 500px;
+    height: 360px;
+    position: absolute;
+    left: 575px;
+    top: 201px;
+}
+
+.answers {
+    flex: 0 0 220px;
+    background-color: #708AFA;
+    border: 3px;
+    border-style: solid;
+    border-color: black;
+}
+
+#answer1, #answer3 {
+    border-right: 1px;
+}
+
+#answer1, #answer2 {
+    border-bottom: 1px;
+}
+
+#scoreHeader {
+    height: 50px;
+    font-size: 45px;
+}
+
+#rightCard {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    position: absolute;
+    left: 1200px;
+    top: 215px;
+    background-color: #FDCC65;
+}
+
+#timer, #currentScore {
+    border: 3px;
+    border-style: solid;
+    border-color: black;
+    height: 150px;
+}
+
+#timer {
+    border-bottom: 1px;
+}
