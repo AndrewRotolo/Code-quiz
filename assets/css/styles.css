@@ -29,6 +29,7 @@ body {
     height: 115px;
     width: 200px;
     text-align: center;
+    border-top: 1px;
 }
 
 #question {
@@ -75,6 +76,9 @@ body {
 #scoreHeader {
     height: 50px;
     font-size: 45px;
+    border-top: 3px;
+    border-style: solid;
+    border-color: black;
 }
 
 #rightCard {
