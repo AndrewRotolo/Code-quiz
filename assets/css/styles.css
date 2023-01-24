@@ -42,7 +42,7 @@ body {
     position: absolute;
     left: 575px;
     text-align: center;
-    font-size: 30px; /*Don't forget to adjust this later depending on the length of the question. Consider setting */
+    font-size: 30px; /*Don't forget to adjust this later depending on the length of the question.*/
     background-color: #708AFA;
 }
 
@@ -63,6 +63,7 @@ body {
     border: 3px;
     border-style: solid;
     border-color: black;
+    overflow: hidden;
 }
 
 #answer1, #answer3 {
