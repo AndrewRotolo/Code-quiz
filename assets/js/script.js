@@ -7,10 +7,14 @@ var answer4 = document.getElementById("answer4");
 var answers = document.getElementById("answercard");
 var scoreDisplay = document.getElementById("currentScore");
 var questionBox = document.getElementById("question");
+var score1 = document.getElementById("score1");
+var score2 = document.getElementById("score2");
+var score3 = document.getElementById("score3");
 
 var timeLeft = 60;
 var currentScore = 0;
-var hiscores = [""];
+var hiscoreStorage = localStorage.getItem(hiscores);
+var hiscores = JSON.parse(hiscoreStorage) ?? [];
 var gameActive = false;
 //this variable is only used for the timer function. Probably could rewrite to not need it, but it's a low priority
 var timing;
@@ -33,12 +37,13 @@ Q1A4.setAttribute("object-fit", "cover");
 
 //main function
 function gameStart() {
+    displayScore();
     gameActive = true;
     scoreDisplay.textContent = currentScore;
  //the following starts the timer. Comment it out if testing stuff for more than 60 seconds. Or you could set timeLeft to some crazy high number. That works too.  
  timing = setInterval(timer, 1000);
     Question1();
-    
+    gameEnd();
 }
 
 //ticks down the time and writes it to the timer box
@@ -47,10 +52,11 @@ function timer() {
     timerBox.textContent = "Time Remaining: " + timeLeft;
     scoreDisplay.textContent = currentScore;
     console.log(timeLeft);
-    if(timeLeft === 0) {
+    if(timeLeft === 0 || timeLeft < 0) {
         //gameActive will be the primary variable for determining if the gameplay function should continue. ALWAYS USE IT.
         gameActive = false;
         clearInterval(timing);
+        gameEnd();
     }
 }
 
@@ -92,6 +98,35 @@ function Question1() {
         }
     }
 
+
+function gameEnd() {
+    var lowestScore = hiscores[2];
+
+
+
+    if  (currentScore > lowestScore) {
+        saveScore(currentScore, hiscores);
+    }
+    
+}
+
+function saveScore(currentScore, hiscores) {
+    const name = prompt("High score! Enter your name!");
+    const newScore = {currentScore, name};
+
+    hiscores.push(newScore);
+    hiscores.sort((a, b) => b.currentScore - a.currentScore);
+
+    hiscores.splice(3);
+
+    localStorage.setItem(hiscoreStorage, JSON.stringify(hiscores));
+}
+
+function displayScore() {
+    score1.textContent = hiscores[0];
+    score2.textContent = hiscores[1];
+    score3.textContent = hiscores[2];
+}
 
 
 //starts game upon clicking the "Start Game" button
