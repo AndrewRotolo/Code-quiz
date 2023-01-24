@@ -11,13 +11,13 @@ var score1 = document.getElementById("score1");
 var score2 = document.getElementById("score2");
 var score3 = document.getElementById("score3");
 
-var timeLeft = 60;
+var timeLeft =5;
 var currentScore = 0;
-var hiscoreStorage = localStorage.getItem(hiscores);
-var hiscores = JSON.parse(hiscoreStorage) ?? [];
 var gameActive = false;
 //this variable is only used for the timer function. Probably could rewrite to not need it, but it's a low priority
 var timing;
+
+let hiscores = [];
 
 //these variables are for the images used as the answers
 var Q1A1 = document.createElement("img");
@@ -37,13 +37,14 @@ Q1A4.setAttribute("object-fit", "cover");
 
 //main function
 function gameStart() {
-    displayScore();
+    startButton.style.display = "none";
     gameActive = true;
     scoreDisplay.textContent = currentScore;
+    getScores();
+    writeScores();
  //the following starts the timer. Comment it out if testing stuff for more than 60 seconds. Or you could set timeLeft to some crazy high number. That works too.  
  timing = setInterval(timer, 1000);
     Question1();
-    gameEnd();
 }
 
 //ticks down the time and writes it to the timer box
@@ -98,35 +99,86 @@ function Question1() {
         }
     }
 
+//this function pulls any existing hiscores from local storage, setting them blank if none exist. It then pushes them 
+    function getScores() {
+        var hiscore1;
+        var hiscore2;
+        var hiscore3;
+        var score1String = localStorage.getItem("score1");
+        if(!score1String) {
+            hiscore1 = {score: " ", name: " "};
+        } else {
+            hiscore1 = JSON.parse(score1String);
+        }
+        var score2String = localStorage.getItem("score2");
+        if(!score2String) {
+            hiscore2 = {score: " ", name: " "};
+        } else {
+            hiscore2 = JSON.parse(score2String);
+        }
+        var score3String = localStorage.getItem("score3");
+        if(!score3String) {
+            hiscore3 = {score: " ", name: " "};
+        } else {
+            hiscore3 = JSON.parse(score3String);
+        }
 
-function gameEnd() {
-    var lowestScore = hiscores[2];
-
-
-
-    if  (currentScore > lowestScore) {
-        saveScore(currentScore, hiscores);
+        hiscores.push(hiscore1, hiscore2, hiscore3);
+       hiscores = hiscores.sort(function (a, b) {return b.score - a.score});
     }
+
+    //this function writes the scores to the relevant box in the HTML and then stores them locally
+    function writeScores() {
+        score1.textContent = hiscores[0].name, hiscores[0].score;
+        score2.textContent = hiscores[1].name, hiscores[1].score;
+        score3.textContent = hiscores[2].name, hiscores[2].score;
+
+        localStorage.setItem("score1", JSON.stringify(hiscores[0]));
+        localStorage.setItem("score2", JSON.stringify(hiscores[1]));
+        localStorage.setItem("score3", JSON.stringify(hiscores[2]));
+    }
+
+    //this function should run when the timer reaches 0 or all questions are answered
+    //it sets the current score, adds it to the array, and re-runs the writeScores function to update the highscores
+    //it then resets the game variables and unhides the start button to allow the game to be played again.
+    function gameEnd() { //don't forget to remove the last set of questions/answers once you add them
+        let username = prompt("please enter your name");
+        var endScore = {score: currentScore, name: username};
+        hiscores.push(endScore);
+        console.log(hiscores);
+        hiscores = hiscores.sort(function (a, b) {return b.score - a.score});
+        writeScores();
+        currentScore = 0;
+        timeLeft = 60;
+        startButton.style.display = "block";
+    }
+
+
     
-}
+//these functions are from the article I was following
+// function gameEnd() {
+//     var lowestScore = hiscores[2];
 
-function saveScore(currentScore, hiscores) {
-    const name = prompt("High score! Enter your name!");
-    const newScore = {currentScore, name};
 
-    hiscores.push(newScore);
-    hiscores.sort((a, b) => b.currentScore - a.currentScore);
 
-    hiscores.splice(3);
+//     if  (currentScore > lowestScore) {
+//         saveScore(currentScore, hiscores);
+//     }
+    
+// }
 
-    localStorage.setItem(hiscoreStorage, JSON.stringify(hiscores));
-}
+// function saveScore(currentScore, hiscores) {
+//     const name = prompt("High score! Enter your name!");
+//     const newScore = {currentScore, name};
 
-function displayScore() {
-    score1.textContent = hiscores[0];
-    score2.textContent = hiscores[1];
-    score3.textContent = hiscores[2];
-}
+//     hiscores.push(newScore);
+//     hiscores.sort((a, b) => b.currentScore - a.currentScore);
+
+//     hiscores.splice(3);
+
+//     localStorage.setItem(hiscoreStorage, JSON.stringify(hiscores));
+// }
+
 
 
 //starts game upon clicking the "Start Game" button
