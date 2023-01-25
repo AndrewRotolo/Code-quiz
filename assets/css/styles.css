@@ -30,6 +30,7 @@ body {
     width: 200px;
     text-align: center;
     border-top: 1px;
+    font-size: 35px;
 }
 
 #question {
@@ -97,6 +98,8 @@ body {
     border-style: solid;
     border-color: black;
     height: 150px;
+    font-size: 45px;
+    text-align: center;
 }
 
 #timer {
