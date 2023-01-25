@@ -1,5 +1,8 @@
 # Andrew Rotolo's Coding Quiz
 
+![image](https://user-images.githubusercontent.com/119925857/214470775-bb0d5be7-7b88-4610-8dcc-2751a3752bdf.png)
+
+
 ## Description
 
 The coding quiz serves as a small test of basic coding knowledge consisting of 5 multiple-choice questions. User gains points for a correct answer and loses both points and time for an incorrect answer. The top 3 hiscores are saved locally. Once the game is over, it can be replayed as many times as desired
@@ -8,7 +11,7 @@ The coding quiz serves as a small test of basic coding knowledge consisting of 5
 
 No installation necessary. If running the application locally, simply run index.html in the web browser of your choice.
 
-Application can be found at
+Application can be found at https://andrewrotolo.github.io/Code-quiz/
 
 ## Usage
 
